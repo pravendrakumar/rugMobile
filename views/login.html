@@ -1,0 +1,199 @@
+<div >
+  <div >
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in sliders" active="slide.active">
+        <img ng-src="{{uri}}/img/admin/Slider/{{slide.userId}}/{{slide.image}}" style="margin:auto;">
+        <!--div class="carousel-caption">
+          <h4>Slide {{$index}}</h4>
+          <p>{{slide.text}}</p>
+        </div-->
+      </slide>
+    </carousel>
+  </div>
+
+</div>
+
+
+
+<header class="header">
+  <div class="container">
+  <div class="row"><div class="col-md-6 logo col-sm-4">
+
+	<a href="#"><img alt="" src="https://s3.amazonaws.com/images.rugstudioonline.com/logo/default_logo.png"></a>  </div>
+  
+   <div class="col-md-6 col-sm-8">
+   
+   <div class="icon-lang pull-right">
+   
+   	
+   <table width="100%">
+   <tbody><tr>
+   <td><a href="/users/changeLang/1"><img alt="" data-placement="bottom" class="tooltipSetting" title="English" src="img/england_flag.jpg"></a></td>
+   <td> <a href="/users/changeLang/2"><img alt="" data-placement="bottom" class="tooltipSetting" title="French" src="img/french_flag.jpg"></a></td>
+   <td><a href="/users/changeLang/3"><img alt="" data-placement="bottom" class="tooltipSetting" title="German" src="img/genmany_flag.jpg"></a></td>
+   <td><a href="/users/changeLang/4"><img alt="" data-placement="bottom" class="tooltipSetting" title="Spanish" src="img/spanish_flag.jpg"></a></td>
+   </tr>
+   </tbody></table>
+      </div>
+   
+   
+   <div class="navbar-wrapper">         
+    <div class="navbar-header row">
+       <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>              </button>             
+            </div>
+			<div class="clearfix"></div>
+			
+            <div class="navbar-collapse  collapse pull-right">
+              <ul class="nav navbar-nav">
+                <li class="active">
+				<a href="/">Home</a></li>
+                <li></li>
+                <li></li>                
+              </ul>
+            </div>
+		    </div>
+   </div>
+   <div class="clearfix"></div>
+  </div>
+</div>
+</header>
+
+
+<!-- model popup start here-->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<!--div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 id="myModalLabel" class="modal-title">Designs</h4>
+      </div>
+      <div class="modal-body" id="designresult">
+       
+      </div>
+      
+    </div>
+  </div>
+</div-->
+
+      
+  
+
+<!-- Login box
+    ================================================== -->
+
+<div class="container">
+<div class="row">
+  <div class=" login-box-main">
+  
+    
+  <div class=" loginsection login">
+	<div ng-class="{'alert alert-danger': error}">{{error}}</div>
+  <h1>Member Login</h1>
+   <form accept-charset="utf-8" method="post" name="loginForm" novalidate><div style="display:none;">
+   <input type="hidden" value="POST" name="_method">
+   </div>  	
+   <table cellspacing="5" cellpadding="5" border="0" align="center">
+		<tbody><tr>
+			<td>
+			<input type="text"  maxlength="25" placeholder="Username" name="username" class="input" ng-model="username" required>
+			<!--span ng-show="loginForm.username.$error.required">Username is required.</span-->
+			</td>
+		</tr>
+		<tr>
+			<td><input type="password"   placeholder="Password" name="password" class="input" ng-model="password" required>
+			 <!--span ng-show="loginForm.password.$error.required">Username is required.</span-->
+			</td>
+		</tr>	
+
+		<tr>
+			<td><div class="submit">
+			<input type="button" value="Login" class="login_btn" ng-disabled="loginForm.username.$error && loginForm.username.$invalid ||
+			  loginForm.password.$error && loginForm.password.$invalid" ng-click="login();"></div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><a class="forget_password" href="/forgotPassword">Forgot Your Password?</a></td>
+		</tr>
+	</tbody></table>
+    </form></div>
+  </div>
+  </div>
+   </div>
+  
+   <!-- Choose Styles
+    ================================================== -->  
+<div class="container sectionthree">
+<div class="row">
+
+	<div class="col-md-4 choose_style col-sm-4">
+	<div class="outer_cir">
+	<div class="inner_cir">
+	<span class="glyphicon glyphicon-cog"></span>
+	<h1><img alt="" src="img/choose_style.png"></h1>
+	</div>
+	</div>
+	</div>
+	
+	
+	<div class="col-md-4 choose_style col-sm-4">
+	<div class="outer_cir">
+	<div class="inner_cir">
+	<span style="display:inline-block; margin-top:20px;"><img alt="" src="img/colorpick.png"></span>
+  <h1><img alt="" src="img/choose_color.png"></h1>
+	</div>
+	</div>
+	</div>
+	
+	
+	<div class="col-md-4 choose_style col-sm-4">
+	<div class="outer_cir">
+	<div class="inner_cir">
+	<span class="glyphicon glyphicon-edit"></span>
+	<h1><img alt="" src="img/choose_size.png"></h1>
+	</div>
+	</div>
+	</div>
+
+
+
+</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		
+	})
+</script>
+		
+<input type="hidden" value="http://rugstudioonline.com/" id="site_url" name="data[site_url]">	<div style="display:none;" class="modal-backdrop fade" id="load-screen"> 
+		<div class="windows8" id="fountainG">
+			<div class="fountainG" id="fountainG_1">
+			</div>
+			<div class="fountainG" id="fountainG_2">
+			</div>
+			<div class="fountainG" id="fountainG_3">
+			</div>
+			<div class="fountainG" id="fountainG_4">
+			</div>
+			<div class="fountainG" id="fountainG_5">
+			</div>
+			<div class="fountainG" id="fountainG_6">
+			</div>
+			<div class="fountainG" id="fountainG_7">
+			</div>
+			<div class="fountainG" id="fountainG_8">
+			</div>
+		</div> 
+	</div>
+
+	<div style="bottom: 0;left: 0;position: fixed;right: 0;top: 0;display:none;" id="unbind-screen"> 
+
+
+</div>

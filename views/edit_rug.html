@@ -1,0 +1,944 @@
+<header class="header">
+  <div class="container">
+	<div class="row">
+		<div class="col-md-4 logo col-sm-2">
+			<a href="javascript:;" class="alogo" ng-click="redirectCatalog();$event.preventDefault(); $event.stopPropagation();">
+				<p class="logo-text-edit">Guest <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> </p>
+			</a>  
+		</div>  
+	<div class="col-md-8 col-sm-10">   	
+	<div class="navbar-wrapper">         
+		<div class="navbar-header row">
+			            
+            </div>
+			<div class="clearfix"></div>
+			<div class="navbar-collapse  collapse pull-right" style="margin-bottom: 5px;">
+             <ul class="nav navbar-nav pull-right">
+                <li class="active">
+                <a ng-click="goCatalog();">Guestuser</a></li>
+                <li><a href="javascript:;" ng-click="logout();$event.preventDefault(); $event.stopPropagation();">Logout</a></li>					               
+            </ul>
+            	
+           
+            </div>
+            <div class="navbar-right">
+            	<ul class="settingheader ">
+					<li class="rug-setting">
+						<a title="Multisetting" data-placement="bottom" class="tooltipSetting"  href="javascript:;" ng-click="MultiSet()" ></a>	
+					</li>
+					<li class="rug-design">
+						<a title="Design" data-placement="bottom" class="tooltipSetting" id="cart_design" href="javascript:;" ng-click="getDesigns()"></a>
+					</li>
+					<li class="rug-cart">
+						<a title="Short List Design" data-placement="bottom" class="tooltipSetting" id="add_cart" href="javascript:;" ng-click="CartPop()" ></a>
+					</li>
+					<li class="rug-text">
+						<a title="Insert Text on Design " data-placement="bottom" class="tooltipSetting" id="textrug" ng-click="showTextModel()" href="javascript:;"></a>	
+					</li>
+					<li class="rug-pic">
+						<a title="Slide Show" target="_blank" data-placement="bottom" class="tooltipSetting" id="slide_show" href="/portals/slideShow"></a>					
+					</li>
+					<li class="rug-skew opac ">
+						<a title="Revert Back" data-placement="bottom" class="tooltipSetting " id="revert" href="javascript:;" ng-click="revert()" ></a>						
+					</li>
+					<li class="rug-undo opac " >
+						<a title="Undo" data-placement="bottom" class="tooltipSetting " id="undo" href="javascript:;" ng-click="undo()" ></a>						
+					</li>
+					<li class="rug-redo opac ">
+						<a title="Redo" data-placement="bottom" class="tooltipSetting " id="redo" href="javascript:;" ng-click="redo()" ></a>						
+					</li>
+					<li style="display:none;" class="rug-account">
+						<a title="My Account" data-placement="bottom" class="tooltipSetting" id="account" href="javascript:;"></a>						
+					</li>
+					<li class="rug-question">
+						<a target="_blank" title="Help" data-placement="bottom" class="tooltipSetting" id="help" href="/portals/help"></a>						
+					</li>
+				</ul>						
+			</div>	
+			<div class="clearfix"></div>
+			<div style="bottom: 0;left: 0;position: fixed;right: 0;top: 0;" id="unbind-screen" ng-show="changeProgress" ng-click="MessageShow();"></div>
+			
+		</div>
+	</div>
+   <div class="clearfix"></div>
+</div>
+</div>
+</header>
+<!-- model popup start here-->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 id="myModalLabel" class="modal-title">Designs</h4>
+      </div>
+      <div class="modal-body" id="designresult">       
+      </div>      
+    </div>
+  </div>
+</div> 
+
+<section id="edit_rug_container" class="container contentin">
+	<div style="display:none;" class="multi_design model"></div>
+	<input type="hidden" value="" name="textpng" id="textpng">
+	<input type="hidden" value="" name="textImagepng" id="textImagepng">
+	<input type="hidden" value="" name="tmpimg_path" id="tmp_path">
+	<input type="hidden" value="26" name="UserId" id="UserId">
+	<input type="hidden" value="" name="clorname" id="colorname">
+	<input type="hidden" value="" name="clorname" id="defaultcolorval">
+	<input type="hidden" value="{{defaultTexture}}" name="defaulttexture" id="default_texture_name">
+	<canvas style="display:none;" id="canvas"></canvas>	
+	<div class="row">
+		<section class="col-md-4 col-sm-5 col-xs-12"> <!-- left Section Starts -->
+			<div id="dynamicsectId" class="dynamicsect">
+				<div  class="gallery" id="image_container">	
+					<div style="position: absolute; visibility: visible;z-index:4;left: 3px;top: 8px;" id="svgElement" ng-show="text_svg_show">
+				 <object svgobject type="image/svg+xml" name="svg_object" >
+				 </object>
+					</div>
+						
+						<img id="{{imagesObj[key].img_key}}" ng-repeat="(key, value) in imagesObj" class="dynamicimg {{rowClass(imagesObj[key].img_key)}}" alt="" style="z-index: 2; visibility: visible;"  ng-src="{{cloud_path}}/{{imagesObj[key].img_name}}" data-img="{{imageSortName[imagesObj[key].img_key]}}" data-img-old="{{imageSortName[imagesObj[key].img_key]}}" imageonload />
+
+						
+				</div>
+			 <zoom-in   class="zoomeffect">
+			</div>
+			<div class=""> <!-- style="min-height: 75px;" -->				
+				<p class="rug_name">{{rugName}}</p>				
+				<ul class="nav pull-right zoomsize">  
+					<li class="shuffle">
+						<a title="Shuffle Colors" data-placement="bottom" class="tooltipSetting" href="javascript:void(0);" id="shuffleImage" ng-click="ShuffleImage($event);"></a>
+					</li>				 
+					<li class="dropdown size" >				 
+						<a title="Shape" data-placement="bottom" class="dropdown-toggle tooltipSetting" data-toggle="dropdown" href="javascript:;" ></a>
+							<ul class="dropdown-menu innershape" role="menu" id="role_shape" style="display:{{shapeStyle}};"  >
+								<li class="{{key}}" ng-repeat="(key, value) in shapeName" style="pointer:cursor;" ng-click="shapeChange($event);" data-value="{{value}}">
+									<a title="{{value}}" class="shapeChange"  href="javascript:"></a>
+								</li>				
+							</ul>							
+						</li>						 
+						<li class="zoom">
+							<a title="Zoom In" data-placement="bottom" class="tooltipSetting" href="javascript:void(0);" ng-click="zoomingRug();" id="zoomImage"></a>
+						</li>						
+					</ul>
+
+					<div class="pull-right">
+							<!--Facebook Loader for image loading-->
+
+						<div loader >
+							
+						</div>
+						<div single-loader >
+							
+						</div>
+					</div>
+					<div class="clearfix"></div>					
+					<!--button class="btn btn-primary deletebtn2" id="room_view" type="button">Room View</button-->	
+					<span style="display:none;" class="master_rug_name pull-right" id="master_rug_name">
+						<a href="/portals/editRug/37/321"><p class="master_bold">Master Rug:</p> Aztec 61608</a>	
+					</span>					
+				</div>	
+				<div class="clearfix"></div>
+			</section>  <!-- left Section Ends -->
+		
+		<section class="col-md-8 col-sm-7 rightsection textureset"> <!-- Right Section starts -->
+			<header> <!-- Catalog Heading  -->
+				<div id="catlog_heading" class="row" ng-show="orderval">				
+					<h3 class="edit-color-texture">
+						<span>Edit Colour/Textures</span>
+					</h3>	
+					<nav class="colortexture_nav" id="colortexture_nav">	
+						<ul class="colortexture">
+							<li class="sidesection" ng-repeat="(key, value) in colors" >
+								<a style="background-color:#{{value.color}}" ng-click="logMouseIn($event);" class="clrsize {{(itemActive == value.index) ? 'active' : ''}}" data-id="{{value.color}}_{{value.index}}" data-value="{{value.index}}" href="javascript:;"></a>
+								<span class="clrname">{{value.id}}</span>
+							    <span class="txtrename" ng-repeat="(key1, value1) in textures" ng-if="value.color==key1" >{{value1}}</span>
+								<span class="pilename" ng-if="!pileShow" ></span>
+							</li>			
+						</ul>	
+						<div style="display:{{clrplate}};" class="textstyle" id="all_colors" >
+						<div class="set">
+							<button class="close multibox_close" type="button" id="color_close" ng-click="closeClrTab($event);" >×</button>
+							<div class="pull-right button_upper">
+							<button style="display:none;" class="apply_color_ipad btn btn-success success-01 pull-right" type="button" ng-click="applyColor();"><span class="rug-apply" ></span> Apply Color</button>
+							<button style="display:none;" class="apply_texture_ipad btn btn-success success-01 pull-right" type="button"ng-click="applyTexture();"><span class="rug-apply" ></span> Apply Texture</button>
+							</div>
+							<h5>Select Texture<span class="selected_texture "></span></h5>
+							<ul class="texture">
+							<div style="display:none;" class="apply_texture_ipad pull-right">
+							<span class="selected_texture_ipad texturein"></span>
+							</div>
+							<li data-value="{{value}}" ng-repeat="(key, value) in textureArr" class="sprite-text0{{$index}} textureChange"  ng-click="setTextureValue($event);" data-id="{{key}}"></li>
+
+							</ul>
+							<div class="set">
+							<h5>Select Colour<span class="selected_color">{{selectedColor}}</span></h5>
+							<select id="colorPalatteId" class="form-control selectcolor" ng-model="selected_value"  ng-change="getColor(this)" >
+							<option ng-selected="defaultColor==clr_cat_key" ng-repeat="(clr_cat_key, clr_cat_value) in colorCategory" value="{{clr_cat_key}}" >{{clr_cat_value}}</option>
+							
+							</select>
+						<div style="display:none;" class="apply_color_ipad mar-top"><span class="selected_color_ipad"></span></div><div class="color_scroll">
+						<ul style=" width: 508px; height: auto; max-height: 200px; overflow: auto;" id="color_choice_main" class="colorchoicetexture">
+						<li data-color="{{value}}" ng-repeat="(key, value) in clrPltArr" style="background-color:#{{value}}" data-value="{{key}}" class="colorchoice" ng-click="setColorValue($event);"  ></li>
+				         </ul>
+				         </div>
+				         </div>
+			         </div>
+
+			         </div>
+					</nav>		
+					<div class="col-sm-12">
+						<form accept-charset="utf-8" method="get" id="CatalogEditRugForm" class="searchsection " action="/portals/searchDesign">					
+							<div class="input-append">    
+								<input type="text" id="CatalogQ" required="required" class="col-md-10 search-query" name="q"><button type="submit" class="btn searchengine pull-right glyphicon glyphicon-search"></button><input type="hidden" id="CatalogD" value="321" name="d"><input type="hidden" id="CatalogC" value="37" name="c">					
+							</div>
+						</form>
+						<div class="save-print-btn">
+							<button type="button" title="Save as PDF" class="tooltipSetting btn btn-primary  save pull-right tooltipSetting" id="save_button" ng-click="Savepdf();"><span class="rug-plus2"></span></button>
+							<button type="button" title="Print " class="tooltipSetting btn btn-primary print pull-right " id="print_button" ng-click="Print();">
+							<span class="rug-plus1" ></span></button>
+						</div>
+					</div>		
+					<div class="col-md-12 rug-print">
+						<button type="button" title="Save as PDF" class=" btn btn-primary  pull-left " id="save_button" style="display:none;"><span class="rug-cart2" ></span> Shop Now</button>
+						<button class="btn btn-primary  pull-right" ng-click="goCatalog();" type="button">Back to Catalog</button>		
+					</div>
+				</div>			
+				<div class="clearfix"></div>
+			</header>	
+		  <!-- Texture List Ends -->			
+			<header class="head_err"> <!-- Heading  -->
+			   <div align="center" style="display:none" class="bg-danger" id="error1"></div>
+				<div class="heading orderdtl">
+					<h3 class="heading-height"><span>Order Details</span>
+						<div class="order-btn pull-right">
+						<button class="btn btn-primary" id="add_more" ng-click="AddMoreDiv()" type="button" ng-show="orderval"><span class="rug-plus" ></span>Add More</button>                
+						</div>
+					</h3>
+				</div>
+				<div class="form-error"></div>
+			</header>
+			<section id="order_form_html" ng-show="order_form">
+			<form accept-charset="utf-8" method="post" id="orderform" class="orderform" action="#" novalidate>
+				<div style="display:none;"><input type="hidden" value="POST" name="_method"></div>	
+	<div class="orderforminn">
+		<input type="hidden" value="1" id="add_more_id" name="add_more_id">
+		<input type="hidden" value="{{designId}}" id="designId" name="data[Order][design_id]">
+		<input type="hidden" value="{{catId}}" id="catalogId" name="data[Order][catalog_id]">
+		<input type="hidden" value="{{usedColor}}" id="used_colors_RGB" name="used_colors_RGB">
+		<input type="hidden" value="{{currentShape}}" id="current_shape" name="current_shape">	
+		<div id="add_more_{{t}}" class="sectionform" ng-repeat="t in [1,2,3,4] track by $index" ng-show="{{t==1}}">
+		    <button type="button" ng-show="{{t!=1}}" data-value="{{t}}" id="" class="btn btn-primary close  close_addMore" ng-click="CloseDiv()" style="displya:none;">x</button>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-4 control-label">Unit</label>
+						<div class="col-sm-8">
+						<select id="OrdersDetailUnit{{t}}" data-id="{{t}}" class="form-control selectsize unit user-success" name="data[OrdersDetail][unit][{{t}}]" onchange="angular.element(this).scope().checkUnit(this)">
+							<option ng-repeat="(key,value) in units" selected="selected" value="{{key}}">{{value}}</option>
+							
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-4 control-label pull-left">Size<span class="astrisk">*</span></label>
+						<div class="col-sm-8">
+							<input type="text" id="OrdersDetailWidth{{t}}" placeholder="W" class="form-control inputsize sizeincr pull-left" name="data[OrdersDetail][width][{{t}}]" ng-model="width"  required>
+							<select style="display:none" class="form-control selectsize width_inch pull-left" id="width_inch_{{t}}" name="data[OrdersDetail][width_inch][{{t}}]" ng-model="width_inch">
+                            <option value="{{val}}" ng-repeat="val in unitArr" ng-selected="$first">{{val}}</option>
+							</select>
+							<span class="crossed pull-left">✖</span>
+							<input type="text" id="OrdersDetailLength1" placeholder="L" class="form-control inputsize sizeincr pull-left" name="data[OrdersDetail][length][{{t}}]"  >
+							<select style="display:none" class="form-control selectsize width_inch pull-left" id="length_inch_{{t}}" name="data[OrdersDetail][length_inch][{{t}}]">
+							<option value="{{un2}}" ng-repeat="un2 in unitArr">{{un2}}</option>
+							</select>
+						</div>
+					</div>
+																
+				</div>				
+			</div>
+			<div class="row">
+			<div class="col-sm-12 ">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-4 control-label">Shape :</label>
+					<div ng-show="{{t==1}}">
+					<label for="inputEmail3" class=" control-label col-sm-8 shape-rect">Rectangle</label>
+					<input type="hidden" id="OrdersDetailShapeName{{t}}" value="Rectangle" class="form-control selectsize" name="data[OrdersDetail][shape_name][{{t}}]">
+					</div>
+					<div class="col-sm-8">
+					<select id="OrdersDetailShapeName2" ng-show="{{t!=1}}" class="form-control selectsize user-success" name="data[OrdersDetail][shape_name][2]">
+					<option selected="selected" value="Rectangle">Rectangle</option>
+					<option value="Oval">Oval</option>
+					<option value="Circle">Circle</option>
+					<option value="Square">Square</option>
+					<option value="Octagon">Octagon</option>
+					<option value="Runner">Runner</option>
+					</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">					
+				<div class="form-group">					
+					<label for="inputEmail3" class=" col-sm-4 control-label">Quantity </label>
+					<div class="col-sm-8">
+						<input type="text" id="OrdersDetailQuantity{{t}}" value="{{t==1? t:''}}" class="form-control inputsize5 qtysize" name="data[OrdersDetail][quantity][{{t}}]">	
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">					
+				<div class="form-group">	
+					<label for="inputEmail3" class="control-label col-sm-4"><span class="labeltext1 lbltxt3">Order# 
+						<span class="astrisk">*</span> 
+					</label>
+					<div class="col-sm-8">					
+						<input type="text" id="OrdersDetailProject{{t}}" class="form-control inputsize5 inputorder" name="data[OrdersDetail][project][{{t}}]">	
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+					
+	</div>	
+<div class="formorder2">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Quanlity </label>
+				<div class="col-sm-8">					
+					<select class="form-control" name="data[Order][quality]">
+					  <option ng-repeat="(key, value) in catalogQuality" value="{{key}}" ng-selected="key==defaultCatalogQuality"  >{{value}}</option>
+					 			  
+					</select>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Sales Person </label>
+				<div class="col-sm-8">					
+					<input type="text" id="OrdersDetailProject1" class="form-control inputsize5 inputorder" name="data[OrdersDetail][project][1]">	
+				</div>
+			</div>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Store# </label>
+				<div class="col-sm-8">					
+					<input type="text" id="OrdersDetailProject1" class="form-control inputsize5 inputorder" name="data[Order][store_number]">	
+				</div>
+			</div>
+		</div>
+	</div>			
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Side Mark </label>
+				<div class="col-sm-8">					
+					<input type="text" id="OrdersDetailProject1" class="form-control inputsize5 inputorder" name="data[Order][sidemark]">	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Strike Off  </label>
+				<div class="col-sm-8">				
+					
+					<input id="OrderStrikeoff_" type="hidden" value="0" name="data[Order][strikeoff]">
+					<input id="OrderStrikeoff" class="custom-checkbox" type="checkbox" value="1"  name="data[Order][strikeoff]">
+					<label for="OrderStrikeoff"><span></span></label> 
+					<select class="form-control" style="width: 52%; float: right; margin-bottom: 15px; margin-right: 3px;" name="data[Order][strikeoffsize]">
+					  <option ng-repeat="(key,value) in strikeOff" value="{{value}}">{{value}}</option>
+					 
+					</select>	
+				</div>
+			</div>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Scale image rendering </label>
+				<div class="col-sm-8">				 				
+					
+					<input id="OrderScale_" type="hidden" value="0" name="data[Order][scale]">
+					<input id="OrderScale" class="checkboxin custom-checkbox" type="checkbox" value="1" name="data[Order][scale]">
+					 <label for="OrderScale"><span></span></label>
+					
+				</div>
+			</div>
+		</div>
+	</div>			
+	<header class="head_err"> <!-- C"atalog Heading  -->
+		<div align="center" style="display:none" class="bg-danger" id="error"></div>
+		<div class="heading"><h3><span class="labeltext">Additional Information </span></h3></div>							 
+	</header>					
+	<div class="formorder2">				
+			<div class="">
+				<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4">Customer <span class="astrisk">*</span> </label>
+				<div class="col-sm-8">					
+					<input type="text" class="form-control inputsize5 inputorder" name="data[Order][client_name]" id="custname">	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4">Address <span class="astrisk">*</span> </label>
+				<div class="col-sm-8">					
+					<input type="text"  class="form-control inputsize5 inputorder" name="data[Order][address_line_1]" id="address">	
+				</div>
+			</div>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Phone <span class="astrisk">*</span> </label>
+				<div class="col-sm-8">					
+					<input type="text"  class="form-control inputsize5 inputorder" name="data[Order][phone]" id="phone">	
+				</div>
+			</div>
+		</div>
+	</div>			
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >Email <span class="astrisk">*</span>  </label>
+				<div class="col-sm-8">					
+					<input type="text"  class="form-control inputsize5 inputorder" name="data[Order][email]" id="email">	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4"><span >City  </label>
+				<div class="col-sm-8">					
+					<input type="text" class="form-control inputsize5 inputorder" name="data[Order][city]">	
+				</div>
+			</div>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4">State </label>
+				<div class="col-sm-8">					
+					<input type="text" class="form-control inputsize5 inputorder" name="data[Order][state]">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4">Zip <span class="astrisk">*</span>  </label>
+				<div class="col-sm-8">					
+					<input type="text"  class="form-control inputsize5 inputorder" name="data[Order][zip]" id="zip">	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 col-sm-12">					
+			<div class="form-group">	
+				<label for="inputEmail3" class="control-label col-sm-4">Country <span class="astrisk">*</span> </label>
+				<div class="col-sm-8">					
+				<select class="form-control" name="data[Order][country]" id="country">
+				  <option value="{{key}}" ng-repeat="(key, value) in Country">{{value}}</option>
+				 				  
+				</select>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">		
+		<div class="col-md-12 col-sm-12 pad2">
+			<div class="form-group">
+				<label for="instruction" style="font-family: LatoRegular; font-size: 14px;">Special Instructions </label>
+				<textarea id="OrderInstructions" class="form-control instructiontext" name="data[Order][instructions]"></textarea>						
+			</div>					
+		</div>	
+	</div>
+	<div class="col-md-12">
+  <button type="button" ng-click="placeOrder();" class=" btn btn-primary  pull-left placeorder" id="save_button"> Place Your Order
+		</button>							
+	</div>	
+</div>
+
+</div>
+</form>
+</section>
+
+ <section id="order_page_2" class="oredrdetails" ng-show="order_detail">
+				<div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+						<h4>Style</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<p>{{catalogName}} <span>  </span>{{designName}}</p>
+					</div>
+				</div>
+				<div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Default Colors</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<ul class="defaultcolor">
+							<li style="background-color:#{{color}}" ng-repeat="color in oldColor"></li>
+						</ul>
+					</div>
+				</div>
+				<div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>New Colors</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<ul class="defaultcolor">
+							<li style="background-color:#{{color}}" ng-repeat="color in newColors"></li>		
+						</ul>
+					</div>
+				</div>
+
+				   <div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>New Color #</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<p>{{clrNameString}}</p>
+					</div>
+				</div>
+
+								<div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Texture Name</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<p>{{textureName}}</p>
+					</div>
+				</div>
+
+								<div class="orderdetails">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Details</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+                    	<div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                <th>Size</th>
+                                <th>Unit</th>
+                                <th>Quantity</th>
+                                <th>Shape</th>
+                                <th ng-show="rugPrice.length!=0">Price</th>
+                              </tr>
+                                
+                                <tr ng-repeat="(key,value) in orderDetails">
+                                <td>{{orderDetails[key].size}}</td>
+                                <td>{{orderDetails[key].unit}}</td>
+                                <td>{{orderDetails[key].quantity}}</td>
+                                <td>{{orderDetails[key].shape_name}}</td>
+                                <td ng-show="rugPrice.length!=0" ng-repeat="(key,val) in rugPrice">{{rugPrice[key].price!=0?userData.currency+' '+rugPrice[key].price.toFixed(2):'0'}}</td>
+                                </tr>
+                                                        
+                            </tbody></table>
+                        </div>
+					</div>
+				</div>
+                
+                <!--
+                <div class="orderdetails darkcolor">
+					<div class="col-md-3 col-sm-5 col-xs-3 BorderRight">
+							<h4>Price</h4>			
+					</div>
+					<div class="col-md-9 col-sm-7 col-xs-9">
+						<p>$ </p>
+					</div>
+				</div>
+				-->
+				<div class="orderdetails darkcolor">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Side Mark</h4>			
+					</div>
+					<div class="col-md-4 col-sm-8 col-xs-9 BorderRight">
+						<p>{{sidemark}}</p>
+					</div>
+                    <div class="col-md-2 quality col-sm-4 col-xs-3 BorderRight">
+                                <h4>Quality</h4>
+                            </div>
+                    <div class="col-md-3 col-sm-8 col-xs-9">
+                      <p>{{quality}}</p>
+					</div>
+				</div>
+				
+				
+				
+				<div class="orderdetails darkcolor">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Distributor Name</h4>			
+					</div>
+					<div class="col-md-4 col-sm-8 col-xs-9 BorderRight">
+						<p>{{userData.User.first_name+' '+userData.User.last_name}}</p>
+					</div>
+                    <div class="col-md-2 quality col-sm-4 col-xs-3 BorderRight">
+                                            <h4>Company</h4>
+                                        </div>
+                    <div class="col-md-3 col-sm-8 col-xs-9">
+						<p>{{userData.UserDetail.company_name}}</p>
+					</div>
+				</div>
+				
+				<div class="orderdetails darkcolor">
+					<div class="col-md-3 col-sm-4 col-xs-3 BorderRight">
+							<h4>Strike Off</h4>			
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9">
+						<p>{{strikeoff==1?'Yes':'No'}}</p>
+					</div>
+				</div>
+				
+				<div class="row">
+
+				<div class="buttonorder pull-right">
+               <div loader-order></div>
+			<button data-role="button" ading-text="Loading..." id="order_confirm" class="orderdetailbtn btn btn-primary" type="button" ng-click="orderConfirm()">Confirm</button>
+
+
+			<button id="order_back" ng-click="BackEdit();" class=" orderdetailbtn btn btn-primary" type="button">Back</button>			
+			<button id="order_cancel" ng-click="orderCancel();" class=" orderdetailbtn btn btn-primary" type="button">Cancel</button>
+			</div>
+				</div>
+
+			</section>
+		<section id="order_page_3" class="oredrdetails" ng-show="order_confirm">
+                <input type="hidden" id="orderid" value="" name="data[orderid]">	<div class="orderdetails">
+                <div class="col-md-12 col-sm-12">
+                    <p>
+                    <b>Congratulations!</b><br>
+                    Your order &nbsp; (No: &nbsp; {{orderFile}}) has been placed successfully.<br>
+                    Thank you for placing the order with us.<br><br>
+                    <a href="javascript:;" id="Clikdownload" ng-click="downloadPdf()">Click here</a> to download Order pdf file.
+                    </p>
+                    <button class="btn btn-primary order_detailbtn pull-right design-btn" id="back_design" ng-click="goCatalog();">Back To Design View</button>
+                </div>
+                </div>
+           </section>
+</section>
+</section>
+<span id="order_detail_append">
+</span>
+<div ng-show="multisetting" class="multi_popup model">
+
+<div style=" cursor:move;" class="multisetting col-md-8 col-lg-6 col-sm-10 ui-draggable ui-draggable-handle" id="multisettingtable">
+<div class="col-sm-12 col-lg-12 col-md-12 multi_popup_hdr">
+      <h3>Change Multiple Color/Texture</h3>
+      <button type="button" class="close multibox_close" ng-click="MultiSet()">×</button>
+  </div>
+  
+<!-- Change Multiple Color container -->
+<div id="loading_image" class="loader_img">	</div>
+  <div id="get_setting" class="col-sm-12 multi_popup_descript" style="display:none;"> 
+
+   <div class="col-sm-3 col-xs-3 col-lg-3 col-md-3 used_clr">
+          <table class="table text-center">
+              <tbody><tr class="head"><th>Used Color</th></tr>
+              <tr ng-repeat="(key, value) in multiset_newcolors" >
+              <td align="left">
+              <a style="background-color:#{{value.color}}" data-id="{{value.id}}" href="javascript:void(0);" class="multiColor_hover"></a>
+
+              <span>{{value.clrName}}</span>
+              </td>
+              </tr> 
+              </tbody>
+              </table>
+        </div>
+      
+	
+        <div class="col-sm-9 col-lg-9 col-xs-9 col-md-9 select_clr">
+          <table class="table text-center multisetting_tab">
+              <tbody>
+              <tr>
+                <th>Color</th>
+                <th>Texture</th>
+                <th>Pile</th>
+              </tr>
+
+                <tr  ng-repeat="(key, value) in multiset_newcolors" >
+				  <td class="color_panel">                  
+					<span>
+
+					<input type="checkbox" id="multicheck_{{key}}" name="" value="{{key}}" class="multiCheckbox tring" ng-click="MultiSelEnable($event)">
+					<a href="javascript:void(0);" style="background-color:#{{value.color}}" id="multiseting_selected_color_{{key}}" data-index="{{key}}" class="select_color_multiset Multisetting"  ng-click="MultisetShowpal($event)" disabled="disabled"></a>
+					<span id="multiseting_selected_label_{{key}}" class="multisetting_selected_color">{{value.clrName}}</span>
+					<input type="hidden" value="{{value.color}}" id="multiColor_{{key}}">
+					<div class="div_relative">
+				      <div style="display:none;position: absolute;z-index:5;" data-index="{{key}}" class="multisettingclrplte" id="milticolorpallate_{{key}}">
+				      <button class="close multibox_close" type="button" data-id="{{key}}" ng-click="closeMultiClrTab($event);" >×</button>
+
+						  <div class="div01 col-md-6 col-lg-7 col-sm-6">
+						  <h5>Selected Color<span class="selected_color">{{multiselected_color}}</span></h5>
+						  <span style="display:none;" class="pull-right" id="color_apply_multiset_{{key}}">
+						    <button type="submit" data-index="{{key}}" ng-click="ApplyMultiClr($event)" class="btn btn-success apply-btn padding_btn">Apply</button>
+
+						      </span>
+						      </div>
+
+						      <div class="div02 col-md-6 col-lg-5 col-sm-6" id="MultisetColorOption">
+						       
+								<select  ng-model="mult_select_value" ng-change="getMultiColor(this)" >
+								<option ng-selected="defaultColor==catkey" ng-repeat="(catkey, catvalue) in colorCategory" value="{{catkey}}" >{{catvalue}}</option>
+								</select>
+						       </div>
+						        <ul style="height:auto; width:508px;" class="colorchoicetexture colorchoice-multisetting" data-id="{{key}}">
+								<li data-color="{{clrvalue}}" ng-repeat="(clrkey, clrvalue) in multi_clrPltArr" style="background-color:#{{clrvalue}}" data-value="{{clrkey}}" class="colorchoice" ng-click="setMultiColorValue($event);"  ></li>
+								</ul>  
+						    </div>
+						  
+                          </div>
+					</span>
+				  </td>
+                <td>
+					<a style="background-color:#{{value.color}}" href="javascript:void(0);"></a> 
+					<span>
+					<select id="multiTexture_{{key}}" disabled="disabled" name="data[multiTexture]">
+					<option value="{{key1}}" ng-selected="value1==value.texture" ng-repeat="(key1, value1) in multiset_texture">{{value1}}</option>
+					</select> 
+					</span>
+                </td>
+                <td>
+					<select id="multiPile_{{key}}" disabled="disabled" name="data[multiPile]">
+					<option value="{{key2}}"ng-selected="value2==value.pile" ng-repeat="(key2, value2) in multiset_pile">{{value2}}</option>
+					
+					</select>              
+
+				</td>
+              </tr>
+               
+                      
+            
+          </tbody></table>
+          
+        </div>
+<div class="col-sm-12 text-right modal_pop">
+      <button type="button" id="multiOk" ng-click="ApplyMultisetting()" class="btn btn-primary">Ok</button>
+      <button type="button" class="btn btn-danger multibox_close" ng-click="MultiSet()">Cancel</button>
+    </div> 
+  <!-- Change Multiple Color container-End -->
+
+</div>
+
+
+</div>
+</div>
+<!--model for desins slider   -->
+<div style="block;"  class="multi_popup model" ng-show="designshow"> 
+<div class="multisetting col-md-6 col-sm-7 ui-draggable ui-draggable-handle">
+
+<div class="col-sm-12 col-lg-12 col-md-12 multi_popup_hdr">
+<h3>Designs</h3>
+<button class="close multibox_close" type="button" ng-click="CloseDesignPop()">×</button>
+</div>
+<div class="col-sm-12 multi_popup_descript" id="get_setting">
+<div id="loading_image" class="loader_img" ng-show="designloader">
+<img src="img/loading-small.gif">
+</div>
+ <div slideit ></div>	
+</div>
+</div>
+</div>
+</div>
+
+<!--model ends here slider   -->
+
+<div style="z-index: 9; " ng-show="cart" class="cart_popup  model">
+ <div class="multisetting col-md-12 col-sm-12" id="multisettingtable">
+	<div class="multi_popup_hdr">
+	  <h3>Your Cart</h3>
+	  <button type="button" class="close cart_close" ng-click="CartPopClose()">×</button>
+	</div>
+	<div style="display: block;" id="message_cart">
+	</div>
+		<div class="cart_pop_main">
+			<ul class="add_cart_rugs" add-cart-div>				
+
+			</ul>			
+		</div>
+			<div class="col-sm-12 text-right modal_pop">
+			<button class="btn btn-primary ordr-btn" id="textokcart" type="button"  ng-click="loadCartImage($event);">Ok</button>
+			<button class="btn btn-danger cart_close" id="cancel" type="button" ng-click="CartPopClose()">Cancel</button>
+	  </div>
+</div>
+</div>
+
+<!--Insert Text model pop up starts here -->
+
+<div  class="multi_popup1 model ng-scope" id="insertxt" ng-show="text_pop_show">
+<div class="col-sm-12 multi_popup_hdr">
+      <h3>Insert Text</h3>
+    <button class="close" type="button" ng-click="hideTextModel()" >×</button>
+  </div>
+
+<!-- Text container Start -->
+  <div class="col-sm-12 multi_popup_descript">     
+        <div class="table-responsive select_clr">
+          <table class="table">
+              <tbody>
+              <tr>
+                <!-- <td>Text</td> -->
+                <td colspan="2" style="z-index:5">
+                  <textarea class="text-area-text" id="svg_text" name="svg_text" ng-model="svg_text" placeholder="You can enter multi-line text with maximum of 100 characters."></textarea>
+                </td>
+             </tr>
+			 
+			 
+			 <tr>
+             </tr>
+			 <tr>
+            <td>
+              <div class="col-md-12 pad-0">
+                <div class="color_pallet_align">
+                  <div class="color_p_tag"><p>Rug color</p></div>
+					<nav class="colortexture_nav custom_bar_dum" id="colortexture_nav2">
+						<div id="color-slider-prev"></div>
+						<ul id="color_text_tab" class="colortexture">
+						 <li class="text_main" ng-repeat="(key, value) in colors" >
+							<a style="background-color:#{{value.color}}"  class="text_pop text_in_{{value.color}}_{{value.index}}" data-id="{{value.color}}_{{value.index}}" data-value="{{value.id}}" data-color="{{value.color}}" href="javascript:;" ng-click="setColorTextValue($event)"></a>
+							<span class="clrname_text">{{value.id}}</span>
+						    <span class="pilename_text" ng-if="!pileShow" ></span>
+						 </li>			
+						</ul>
+						<div id="color-slider-next">
+						</div>
+					</nav>
+                </div>
+              </div>
+        <!--       <div class="col-md-4 pad-1">      
+                <div id="text_div_hover" class="color-section-01 color_pallet_align">
+                  <div class="color_p_tag"><p>Text color</p></div>
+                   
+                </div>
+              </div> -->
+        
+          </td>
+       </tr>
+			 <tr>
+                <!-- <td>Font Name</td> -->
+                <td colspan="2" class="background-clre">
+<div class="text-section-01 col-md-12">
+
+  <select id="font_familiy" ng-model="font_familiy" ng-init="font_familiy='Arial'">
+  <option style="font-family:{{key}};" value="{{key}}"  ng-repeat="(key,value) in fontsArr">{{value}}</option>
+  </select>			 
+
+
+<select name="data[Order][instructions]" id="text_size" ng-model="text_size" ng-init="text_size=50">
+<option value="{{item}}" ng-repeat="item in range(40,101)" ng-selected="{{item==50}}">{{item}}
+</option>
+</select>  
+<input type="hidden" name="data[Order][instructions]" id="text_bold_" ng-model="text_bold_"value="0">
+<input type="checkbox" name="data[Order][instructions]" id="text_bold" ng-model="text_bold"value="1">
+<p class="caption-align">Bold</p>
+<input type="hidden" name="data[Order][instructions]" id="text_italic_" ng-model="text_italic_" value="0">
+<input type="checkbox" name="data[Order][instructions]" id="text_italic" ng-model="text_italic" value="1">
+<p class="caption-align">Italic</p>  
+<div id="text_div_hover" class="color-section-01 pull-right">
+                
+	  <div style="float:right;">
+		<span id="color_value_selected" class="pull-left colortext">{{color_value_selected}}</span>
+		<div id="text_div_color" style="background-color:{{text_div_color}}; height: 25px; width: 25px; float: left;"></div>
+		<a href="javascript:;"  ng-click="showtextColor()" class="color-pic">Color</a>
+		<div id="colorchoicetextureHover" class="text_Edit_view" style="position: absolute;z-index:5;" ng-show="text_show_clr">
+		<div class="div01 col-md-6 col-lg-6 col-sm-6">Select Color <span id="selected_color_value_text"></span> 
+		<span class="pull-right" id="color_apply_text" ng-show="text_clr_applybtn">
+		<button class="btn btn-success apply-btn padding_btn" type="submit" ng-click="ApplytextColor()">Apply</button></span>
+		</div>
+		<div id="textColorOption" class="div02 col-md-6 col-lg-6 col-sm-6">
+			<select id="select_color_palatetext" ng-model="text_select_palate" ng-change="textColor(this)"  >
+			<option ng-selected="defaultColor==clr_cat_key" ng-repeat="(clr_cat_key, clr_cat_value) in colorCategory" value="{{clr_cat_key}}" >{{clr_cat_value}}</option>
+			</select>
+		</div>
+
+		<ul id="colorchoicetextureId" class="colorchoicetexture colorchoice-text">
+		<li data-color="{{value}}" ng-repeat="(key, value) in clrtextPltArr" style="background-color:#{{value}}" data-value="{{key}}" class="colorchoice" ng-click="setColorTextValue($event);"  ></li>
+		</ul>
+
+		</div> 
+	</div>
+</div>
+</div>
+
+ </td>
+             </tr>
+
+			
+		<tr>
+		<td>
+		<div class="rotate-area">
+			<h5>Rotate Text</h5>
+			<div class="rotate-div">
+			<input type="text" ng-model="textslider" ng-init="textslider=0;" class="rotate-text-03 ng-pristine ng-valid"   id="rotateText">
+			</div>
+				<div ui-slider="slider.options" 
+				min="-180" 
+				max="180" 
+				ng-model="textslider" ></div>
+			<!--div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider">
+			<div style="width: 50%;" class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div>
+			<span style="left: 50%;" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+			</div--> 
+		  </div>
+		  </td>
+
+		</tr>
+          </tbody>
+
+ </table>
+          
+      </div>
+	<div class="col-sm-12 text-right modal_pop">
+
+	<p class="bg-info">Double click to drag Text</p>
+    <button class="btn btn-info" id="resetData" type="button" ng-click="ResetInTest()">Reset</button>
+	<button class="btn btn-primary" id="textok" type="button" ng-click="generateImage()" ng-disabled="svgtext">OK</button>
+	<button class="btn btn-danger" ng-click="hideTextModel()" id="cancel" type="button">Cancel</button>
+	</div> 
+  </div> 
+
+  <!-- Text container-End -->
+
+</div>
+	<!--Insert Text model pop up ends here -->
+  
+
+
+
+
+<div ng-include="'views/footer.html'"></div>

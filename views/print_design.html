@@ -1,0 +1,164 @@
+
+<script>
+function getImage(){
+	var imgTag ="";
+
+	var str = opener.document.getElementById('dynamicsectId').innerHTML;
+	    alert(window.opener.angular.element(".dynamicimg"));
+        window.opener.$( ".dynamicimg" ).each(function() {
+        $img = $("<img>", {class: "printdynamicimgroom",src:$(this).attr('src')});
+        $("#imageDesign").append($img);
+        });
+    
+   var imagename=window.opener.document.getElementById('textpng').value;
+   
+   if(imagename !='')
+   {
+    $('#imageDesign').find('img:first').remove();
+
+   }
+	var  html='';
+	var clientname=window.opener.document.getElementById('custname').value; 
+	if(clientname =='')
+	{
+	clientname="Not Specified";
+	}
+
+	var phone=window.opener.document.getElementById('phone').value; 
+	if(phone =='')
+	{
+
+	phone="Not Specified";
+	}
+
+	var email=window.opener.document.getElementById('email').value; 
+	if(email == '')
+	{
+	email="Not Specified";
+	}
+	if(window.opener.document.getElementById('custname').value !='' ||window.opener.document.getElementById('email').value !=''||window.opener.document.getElementById('phone').value !='')
+	{
+	html +="<tr><th>Client Name</th><th>Phone</th><th>Email</th></tr>";
+	html +="<tr>";
+	html +="<td>"+clientname+"</td>";
+	html +="<td>"+phone+"</td>";
+	html +="<td>"+email+"</td>";
+	html +="</tr>";
+
+
+
+	$("#color_table").append(html);
+	$("#color_table").show();
+	}
+
+//window.opener.document.getElementById("client_info").appendChild(html).tBodies[1].appendChild(html);
+
+
+}
+
+function printpage() {
+  //document.getElementById("printbtn").style.display='none';
+  //document.title = " ";
+  window.print();
+  }
+
+</script>
+<style type="text/css">
+@media print { 
+		
+    .no-print { display:none; } 
+
+
+   }
+
+</style>
+<div class="container">
+<div class="row">
+
+<div class="col-md-6">logo</div>
+<div class="col-md-6 head_topright">distributor name</div>
+</div>
+<div class="row">
+<hr class="hr-top">
+<div class="col-md-4 col-lg-6 col-xs-5">
+<div id="imageDesign" style="">
+
+</div>
+</div>
+<div class="col-md-8 col-xs-7 col-lg-6 portals-manage ">
+
+<div class="table-responsive">
+  	<table id="client_info" border="0" cellspacing="0" cellpadding="0" class="table">
+		
+			<td colspan="3">
+			<table border="0" class="table table-bordered portals_class table_hr" cellspacing="0" cellpadding="0" align="left">
+				<tr>
+					<thead>
+						<tr>
+							<th colspan="3">Catalog Name</td>
+							
+							<th  colspan="4">{{}}</td>
+						</tr>
+					</thead>
+					<tr>
+						<td  colspan="3" class="">Design Name</span></td>
+						
+						<td  colspan="4" class="">{{}}</td>
+					</tr>
+		<tr>
+					<td colspan="3">Used Colors</td>
+					<td colspan="2">Default Colors</td>
+					<td>Textures</td>
+					<td align="left">Piles</td>
+				</tr>
+
+         
+			<tr>
+				<td class="UsedColor1">prefix</td>
+				<td class="defaultColor"><div style="background-color:#colorval; width:19px; height:19px;text-align:left;"></div></td>
+				<td>colorname</td>
+				<td class="defaultColor">
+					<div style="background-color:#usedcolorval;width:19px; height:19px;text-align:left;"></div>
+				</td>
+            <td>usedcolorname</td>
+      
+        	<td align="left" style="height:23px;">texture</td>
+        	
+			<td align="left" style="height:23px;">pile</td>
+
+        </tr>
+
+		 <tr>
+		 <table border="0" id="color_table" class="table table-bordered portals_class table_hr" cellspacing="0" cellpadding="0" align="left" style="disply:none;">
+			
+		 </table>
+		 </tr>
+		 
+        </table></td></tr>
+		
+		<tr>
+			<td colspan="3"  style="padding:5px 0 0 5px"></td>
+		</tr>
+		
+	</table>
+		<div  id="printbtn">
+
+	<p style="text-align:left; font-weight:bold;">
+	<b>note : </b>message1
+              <br />
+              message2
+    </p>
+	<input class="btn btn-primary no-print" type="button" name="print" value="Print" id="print" onclick="javascript:printpage();">
+	</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+
+
+</div>
+
+
+<script>
+getImage();
+</script>

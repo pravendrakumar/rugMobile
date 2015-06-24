@@ -1,0 +1,13 @@
+<div  id="slider1">
+<a class="buttons prev" id="slider-prev" href="javascript:void(0);"></a>
+<div class="viewport">
+	<ul class="overview" id="cartSlider">	
+
+	  <li class="slideCart {{(designid == key) ? 'design-active' : ''}}" ng-repeat="(key,value) in designImages" ng-click="ChangeDesignImg($event)" style="cursor:pointer;">
+	     <img class="class_active_check" src="img/rug/check.png" ng-show="{{designid == key}}" />
+		<img src="{{cloud_path}}/admin/designs/{{key}}/{{key}}_Rectangle_thumb.png" alt="{{value}}" title="{{value}}" data-id="{{key}}"  ><p>{{value}}</p>
+		</li>
+		
+	 </ul>
+</div>
+<a class="buttons next" id="slider-next"  href="javascript:void(0);"></a>

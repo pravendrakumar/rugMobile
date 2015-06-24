@@ -1,0 +1,108 @@
+<header class="header">
+  <div class="container">
+  <div class="row"><div class="col-md-6 logo col-sm-4">
+
+	<a href="javascript:;" class="alogo" ng-click="redirectCatalog();$event.preventDefault(); $event.stopPropagation();"><p class="logo-text-edit">Guest  <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span></button></p></a>  </div>
+  
+   <div class="col-md-6 col-sm-8">
+   
+   <div class="icon-lang pull-right">
+   
+      </div>
+   <div class="navbar-wrapper">         
+    <div class="navbar-header row">
+                   
+            </div>
+			<div class="clearfix"></div>			
+            <div class="navbar-collapse  collapse pull-right">
+              <ul class="nav navbar-nav">
+                <li class="active">	<a href="/">Guestuser</a></li>
+                <li><a ng-href="#" ng-click="logout();$event.preventDefault(); $event.stopPropagation();">Logout</a></li>
+                <li></li>                
+              </ul>
+            </div>
+		    </div>
+   
+   
+   </div>
+   <div class="clearfix"></div>
+  </div>
+</div>
+</header>
+
+
+<section class="container contentin">
+	
+	<div class="row">
+		<aside class="col-md-4 col-sm-5 "> <!-- left Section Starts -->	
+			<div class="dropdown" id="dropdown-catalog">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" ng-click="showDropDown();" >
+    catalog list 
+    <span class="caret"></span>
+  </button>
+
+<ul class="dropdown-menu nav-pills nav-stacked navigationin catalog-list" ng-hide="dropdown" role="menu" aria-labelledby="dropdownMenu1" nav-bar>
+
+    
+	
+  	</ul>
+</div>		
+		
+<!-- Left Navigation Ends -->
+		</aside>  <!-- left Section Ends -->
+		<section class="col-md-8 col-sm-7 rightsection"> <!-- Right Section starts -->
+			<header> <!-- Catalog Heading  -->
+				<h2>catalog designs</h2>
+			</header>
+			<section>
+			<p id="catalog_name" class="text-primary">{{description}}</p>
+			<div id="loading_image" class="loader_img" ng-if="loader==true"><img src="img/loading-small.gif"></div>
+			<ul id="catalog_list" class="rugs" ng-if="loadData==true">
+			<li ng-repeat="image in catalogs" ng-click="changePage(image.catalog_id,image.design_id);$event.preventDefault(); $event.stopPropagation();">
+			<a class="loading_image" href="#"  data-design-id="{{image.design_id}}" data-catlog-id="{{image.catalog_id}}">
+			<img title="{{image.name}}" alt="{{image.name}}" ng-src="{{cloud_path}}/admin/designs/{{image.design_id}}/{{image.design_id}}_Rectangle_thumb.png">
+			</a>
+			<div class="rug_content"><h6>{{image.name}}</h6></div>
+			</li>								
+			</ul>
+			
+			<section>
+		</section>
+	</section></section></div>
+
+
+</section>
+<div class="clearfix"></div>
+
+<!-- include footer html -->
+<div ng-include="'views/footer.html'"></div>
+<!-- include footer html -->
+		
+<input type="hidden" value="http://rugstudioonline.com/" id="site_url" name="data[site_url]">	<div style="display:none;" class="modal-backdrop fade" id="load-screen"> 
+		<div class="windows8" id="fountainG">
+			<div class="fountainG" id="fountainG_1">
+			</div>
+			<div class="fountainG" id="fountainG_2">
+			</div>
+			<div class="fountainG" id="fountainG_3">
+			</div>
+			<div class="fountainG" id="fountainG_4">
+			</div>
+			<div class="fountainG" id="fountainG_5">
+			</div>
+			<div class="fountainG" id="fountainG_6">
+			</div>
+			<div class="fountainG" id="fountainG_7">
+			</div>
+			<div class="fountainG" id="fountainG_8">
+			</div>
+		</div> 
+	</div>
+
+	<div style="bottom: 0;left: 0;position: fixed;right: 0;top: 0;display:none;" id="unbind-screen">
+
+</div>

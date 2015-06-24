@@ -1,0 +1,63 @@
+<svg height="450" width="350" id="print_svg_element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<script xmlns="http://www.w3.org/2000/svg" xlink:href="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+<script xmlns="http://www.w3.org/2000/svg"><![CDATA[
+
+function changeCursor(cursor)
+{
+	var tspan=$("#fontSel").children();
+	for(var i=0;i<tspan.length;i  )
+	{
+	$(tspan[i]).css('cursor',cursor);
+	}
+}
+
+function bindDrag(evt)
+{
+	if(evt.detail=='2')
+	{
+	startMove(evt);
+	changeCursor('move');
+	
+	document.getElementById('fontSel').addEventListener('click', function() {
+	changeCursor('text');
+	endMove();
+	}, false);
+	}
+}
+
+
+function startMove(evt){
+	 x1 = evt.clientX;
+ 	 y1 = evt.clientY;
+	 document.documentElement.setAttribute("onmousemove","moveIt(evt)")
+	 C=document.getElementById('transformElement');
+	 }
+
+function moveIt(evt){
+    translation = C.getAttributeNS(null, "class").slice(10,-1).split(' ');
+	sx = parseInt(translation[0]);
+ 	sy = parseInt(translation[1]);
+
+ 	C.setAttributeNS(null, "transform", "translate("   (sx   evt.clientX - x1)   " "   (sy   evt.clientY - y1)   ")");
+	C.setAttributeNS(null, "class", "translate("   (sx   evt.clientX - x1)   " "   (sy   evt.clientY - y1)   ")");
+	x1 = evt.clientX;
+ 	y1 = evt.clientY;
+}
+
+function endMove(){
+ 	document.documentElement.setAttributeNS(null, "onmousemove",null);
+	
+	C.setAttributeNS(null, "onclick",'bindDrag(evt)');
+	
+	//C.innerHTML=C.innerHTML;
+	}
+
+   ]]></script>
+   
+
+<g xmlns="http://www.w3.org/2000/svg" transform="translate(0 0)" id="transformElement" class="translate(0 0)">
+
+<text onmousedown="" onmouseup="" align="center" id="fontSel" class="changeMe" style="text-anchor: middle; font-family:Arial;funciri:move;" font-size="20" transform="translate(160 220)"><tspan x="0" dy="1.2em">aaaaaaaaaaa</tspan></text>
+
+</g>
+</svg>

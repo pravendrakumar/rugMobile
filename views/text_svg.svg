@@ -1,0 +1,15 @@
+<svg id="svg_element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="273" height="409" viewBox="0 0 901 1400">
+<defs>
+    <link href="/css/fonts.css" type="text/css" rel="stylesheet" 
+          xmlns="http://www.w3.org/1999/xhtml"/>
+</defs>   
+   
+<g transform="translate(507 680)" id="transformElement" class="translate(507 680)">
+
+<text   align="center" id="fontSel" class="changeMe" style="text-anchor: middle; font-family:Arial;funciri:move;"  font-size="50" draggable="true">
+<tspan x="0" dy="1.2em" y="0" ></tspan>
+</text>
+
+</g>
+
+</svg>

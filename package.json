@@ -1,0 +1,17 @@
+{
+  "name": "rug-mobile",
+  "version": "0.1.0",
+  "devDependencies": {
+    "firebase": "^2.2.3",
+    "grunt-contrib-concat": "^0.5.1",
+    "js-data": "^1.6.1",
+    "js-data-angular": "^2.2.3",
+    "js-data-firebase": "^1.1.1",
+    "angular-touch": "^1.4.0",
+    "angular-css": "^1.0.7",
+    "angular-load":"^0.2.0",
+    "grunt-ngmin": "^0.0.3",
+    "grunt-contrib-uglify": "0.9.1",
+    "grunt-contrib-concat": "0.5.1"
+  }
+}

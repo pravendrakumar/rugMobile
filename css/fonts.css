@@ -1,0 +1,180 @@
+ @font-face { 
+  font-family: "Broadway"; 
+  src: url("../fonts/broadway/broadway.eot"); 
+  src: url("../fonts/broadway/broadway.eot?#iefix") format("embedded-opentype"), 
+       url("../fonts/broadway/broadway.svg#Broadway") format("svg"), 
+       url("../fonts/broadway/broadway.woff") format("woff"), 
+       url("../fonts/broadway/broadway.ttf") format("truetype"); 
+ }
+ @font-face { 
+ 	font-family: 'Century'; 
+ 	src: url('../fonts/century/century.eot'); 
+ 	src: url('../fonts/century/century.eot?#iefix') format('embedded-opentype'), 
+ 	     url('../fonts/century/century.svg#Century') format('svg'), 
+ 	     url('../fonts/century/century.woff') format('woff'), 
+ 	     url('../fonts/century/century.ttf') format('truetype'); 
+}   
+
+@font-face { 
+	font-family: 'Cooper Black';
+	src: url('../fonts/cooper_black/cooper_black.eot'); 
+	src: url('../fonts/cooper_black/cooper_black.eot?#iefix') format('embedded-opentype'), 
+	     url('../fonts/cooper_black/cooper_black.svg#Cooper Black') format('svg'), 
+	     url('../fonts/cooper_black/cooper_black.woff') format('woff'), 
+	     url('../fonts/cooper_black/cooper_black.ttf') format('truetype'); 
+}
+
+@font-face { 
+	font-family: 'Copperplate Gothic Bold'; 
+	src: url('../fonts/copperplate_gothic_bold/copperplate_gothic_bold.eot'); 
+	src: url('../fonts/copperplate_gothic_bold/copperplate_gothic_bold.eot?#iefix') format('embedded-opentype'), 
+	     url('../fonts/copperplate_gothic_bold/copperplate_gothic_bold.svg#Copperplate Gothic Bold') format('svg'), 
+	     url('../fonts/copperplate_gothic_bold/copperplate_gothic_bold.woff') format('woff'), 
+	     url('../fonts/copperplate_gothic_bold/copperplate_gothic_bold.ttf') format('truetype'); 
+}
+
+@font-face { 
+	font-family: 'Curlz MT';  
+	src: url('../fonts/curlz_mt/curlz_mt.eot'); 
+	src: url('../fonts/curlz_mt/curlz_mt.eot?#iefix') format('embedded-opentype'), 
+		 url('../fonts/curlz_mt/curlz_mt.svg#Curlz MT') format('svg'), 
+		 url('../fonts/curlz_mt/curlz_mt.woff') format('woff'), 
+		 url('../fonts/curlz_mt/curlz_mt.ttf') format('truetype');  
+   font-style: normal;
+}
+
+@font-face { 
+	font-family: 'Edwardian Script ITC'; 
+	src: url('../fonts/edwardian_script_itc/edwardian_script_itc.eot'); 
+	src: url('../fonts/edwardian_script_itc/edwardian_script_itc.eot?#iefix') format('embedded-opentype'), 
+	     url('../fonts/edwardian_script_itc/edwardian_script_itc.svg#Edwardian Script ITC') format('svg'), 
+	     url('../fonts/edwardian_script_itc/edwardian_script_itc.woff') format('woff'), 
+	     url('../fonts/edwardian_script_itc/edwardian_script_itc.ttf') format('truetype'); 
+}
+
+@font-face { 
+	font-family: 'Garamond'; 
+	src: url('../fonts/garamond/garamond.eot'); 
+	src: url('../fonts/garamond/garamond.eot?#iefix') format('embedded-opentype'), 
+		url('../fonts/garamond/garamond.svg#Garamond') format('svg'), 
+		url('../fonts/garamond/garamond.woff') format('woff'), 
+		url('../fonts/garamond/garamond.ttf') format('truetype'); 
+		font-weight: normal; 
+		font-style: normal;
+}
+@font-face { 
+	font-family: 'Hobo Std Medium'; 
+	src: url('../fonts/hobo_std_medium/hobo_std_medium.eot'); 
+	src: url('../fonts/hobo_std_medium/hobo_std_medium.eot?#iefix') format('embedded-opentype'), 
+		url('../fonts/hobo_std_medium/hobo_std_medium.svg#Hobo Std Medium') format('svg'), 
+		url('../fonts/hobo_std_medium/hobo_std_medium.woff') format('woff'), 
+		url('../fonts/hobo_std_medium/hobo_std_medium.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}
+@font-face { 
+	font-family: 'Mistral'; 
+	src: url('../fonts/mistral/mistral.eot'); 
+	src: url('../fonts/mistral/mistral.eot?#iefix') format('embedded-opentype'), 
+		url('../fonts/mistral/mistral.svg#Mistral') format('svg'), 
+		url('../fonts/mistral/mistral.woff') format('woff'), 
+		url('../fonts/mistral/mistral.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}
+
+@font-face {
+	font-family:'Ravie';
+	src:url("../fonts/Ravie/RAVIE.eot?") format("eot"),
+		url("../fonts/Ravie/RAVIE.woff") format("woff"),
+		url("../fonts/Ravie/RAVIE.ttf") format("truetype"),
+		url("../fonts/Ravie/RAVIE.svg#Ravie") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Schoolbook';
+	src:url("../fonts/school_book_new/School Book New.eot?") format("eot"),
+		url("../fonts/school_book_new/School Book New.woff") format("woff"),
+		url("../fonts/school_book_new/School Book New.ttf") format("truetype"),
+		url("../fonts/school_book_new/School Book New.svg#School Book New") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Arial';
+	src:url("../fonts/Arial/Chn_Prop_Arial_Normal.eot?") format("eot"),
+		url("../fonts/Arial/Chn_Prop_Arial_Normal.woff") format("woff"),
+		url("../fonts/Arial/Chn_Prop_Arial_Normal.ttf") format("truetype"),
+		url("../fonts/Arial/Chn_Prop_Arial_Normal.svg#ChnTimesRoman") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Cambria';
+	src:url("../fonts/Cambria/ufonts.eot?") format("eot"),
+		url("../fonts/Cambria/ufonts.woff") format("woff"),
+		url("../fonts/Cambria/ufonts.ttf") format("truetype"),
+		url("../fonts/Cambria/ufonts.svg#Cambria") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Norasi';
+	src:url("../fonts/norasithai/Norasi.font/Thai/Norasi.font/ThonburiBold.eot?") format("eot"),
+		url("../fonts/norasithai/Norasi.font/Thai/Norasi.font/ThonburiBold.woff") format("woff"),
+		url("../fonts/norasithai/Norasi.font/Thai/Norasi.font/ThonburiBold.ttf") format("truetype"),
+		url("../fonts/norasithai/Norasi.font/Thai/Norasi.font/ThonburiBold.svg#Thonburi-Bold") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Palatino';
+	src:url("../fonts/Palatino/palatino-bold.eot?") format("eot"),
+		url("../fonts/Palatino/palatino-bold.woff") format("woff"),
+		url("../fonts/Palatino/palatino-boldttf") format("truetype"),
+		url("../fonts/Palatino/palatino-bold.svg#PalatinoBold") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Reference';
+	src:url("../fonts/Reference/REFSAN.eot?") format("eot"),
+		url("../fonts/Reference/REFSAN.woff") format("woff"),
+		url("../fonts/Reference/REFSAN.ttf") format("truetype"),
+		url("../fonts/Reference/REFSAN.svg#MSReferenceSansSerif") format("svg");
+	font-weight:normal;font-style:normal;
+}
+@font-face {
+	font-family:'Times';
+	src:url("../fonts/Times/14018.eot?") format("eot"),
+		url("../fonts/Times/14018.woff") format("woff"),
+		url("../fonts/Times/14018.ttf") format("truetype"),
+		url("../fonts/Times/14018.svg#Time-Roman") format("svg");
+	font-weight:normal;font-style:normal;
+}
+
+@font-face {
+	font-family:'Helvetica';
+	src:url("../fonts/Helvetica/Helveticamazing.eot?") format("eot"),
+		url("../fonts/Helvetica/Helveticamazing.woff") format("woff"),
+		url("../fonts/Helvetica/Helveticamazing.ttf") format("truetype"),
+		url("../fonts/Helvetica/Helveticamazing.svg#Helveticamazing") format("svg");
+	font-weight:normal;font-style:normal;
+}
+@font-face {
+	font-family:'Courier';
+	src:url("../fonts/Courier/Courier.eot?") format("eot"),
+		url("../fonts/Courier/Courier.woff") format("woff"),
+		url("../fonts/Courier/Courier.ttf") format("truetype"),
+		url("../fonts/Courier/Courier.svg#Courier") format("svg");
+	font-weight:normal;font-style:normal;
+}
+@font-face {
+	font-family:'Myriad';
+	src:url("../fonts/MyriadPro/MyriadPro-Regular_1.eot?") format("eot"),
+		url("../fonts/MyriadPro/MyriadPro-Regular_1.woff") format("woff"),
+		url("../fonts/MyriadPro/MyriadPro-Regular_1.ttf") format("truetype"),
+		url("../fonts/MyriadPro/MyriadPro-Regular_1.svg#MyriadPro-Regular") format("svg");
+	font-weight:normal;font-style:normal;
+}

@@ -1,0 +1,10 @@
+<svg id="svg_element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<script xlink:href="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<g transform="translate(0 0)" id="transformElement" class="translate(0 0)">
+
+<text  align="center" id="fontSel" class="changeMe" style="text-anchor: middle; font-family:Arial;funciri:move;"  font-size="20" transform="translate(160 220)">
+<tspan x="0" dy="1.2em" y="0" >Rug</tspan>
+</text>
+
+</g>
+</svg>

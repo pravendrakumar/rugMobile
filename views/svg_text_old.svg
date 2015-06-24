@@ -1,0 +1,163 @@
+<svg id="svg_element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="346" height="519" viewBox="0 0 924 1374">
+<script xlink:href="http://www.rugstudioonline.com/js/jquery-1.10.2.min.js"></script>
+<script><![CDATA[
+
+
+window.onload = function(e) 
+{      
+     // for change attribute
+  if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0){
+       var text=document.getElementById("fontSel").getAttribute("class");
+      console.log(getInternetExplorerVersion());
+      document.getElementById("fontSel").setAttributeNS(null,"ondblclick","bindDrag(evt)");
+      //console.log(document.getElementById("fontSel").getAttribute("onclick"));
+     }else{
+     
+     document.getElementById("fontSel").setAttributeNS(null,"onclick","bindDrag(evt)");
+     //console.log(document.getElementById("fontSel").getAttribute("onclick"));
+     }
+
+	//For touch Device
+	document.getElementById("fontSel").addEventListener("touchmove",function(event) {
+	 event.preventDefault();
+	 x1 = event.changedTouches[0].clientX;
+ 	 y1 = event.changedTouches[0].clientY;
+ 	 C=document.getElementById('transformElement');
+ 	 moveIt(event.changedTouches[0]); 
+	}, false);
+
+};
+
+
+//Function Change Cursor
+function changeCursor(cursor)
+{
+	var tspan=$("#fontSel").children();
+	for(var i=0;i<tspan.length;i++)
+	{
+	$(tspan[i]).css('cursor',cursor);
+	}
+}
+
+//Function bind Drag on double click
+function bindDrag(evt)
+{
+    
+    if(navigator.userAgent.indexOf("Firefox") != -1 ||navigator.userAgent.indexOf("Safari") != -1){
+    if(evt.detail=='2')
+	{
+	startMove(evt);
+	changeCursor('move');
+	
+	document.getElementById('fontSel').addEventListener('click', function() {
+	changeCursor('text');
+	endMove();
+	}, false);
+	}
+
+    }else{
+
+	startMove(evt);
+	changeCursor('move');
+	
+	document.getElementById('fontSel').addEventListener('click', function() {
+	changeCursor('text');
+	endMove();
+	}, false);
+	
+	}
+}
+
+
+function startMove(evt)
+{	 
+x1 = evt.clientX;
+y1 = evt.clientY;
+C=document.getElementById('transformElement');
+document.documentElement.setAttribute("onmousemove","moveIt(evt)");
+}
+
+
+//Function Start Drag
+function moveIt(evt)
+{
+	translation = C.getAttributeNS(null, "class").slice(10,-1).split(' ');
+	sx = parseInt(translation[0]);
+	sy = parseInt(translation[1]);
+ 	
+	DragTarget = document.getElementById('fontSel');
+	//---reference point to its respective viewport--
+	Pnt = DragTarget.nearestViewportElement.createSVGPoint();
+	Pnt.x = evt.clientX;
+	Pnt.y = evt.clientY;
+	//---elements in different(svg) viewports---
+	var sCTM = DragTarget.nearestViewportElement.getScreenCTM();
+	Pnt = Pnt.matrixTransform(sCTM.inverse());
+
+	C.setAttributeNS(null, "transform", "translate(" + (Pnt.x-30) + " " + (Pnt.y-30) + ")");
+	C.setAttributeNS(null, "class", "translate(" + (Pnt.x-30) + " " + (Pnt.y-30) + ")");
+
+	x1 = evt.clientX;
+	y1 = evt.clientY;
+}
+
+
+//Function End Drag
+function endMove()
+{
+document.documentElement.setAttributeNS(null, "onmousemove",null);
+C=document.getElementById('transformElement');
+//trans=document.getElementById('translate');
+//trans.value=C.getAttributeNS(null, "transform");
+
+
+ if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0){
+     C.setAttributeNS(null, "ondblclick",'bindDrag(evt)');
+     }else{
+      C.setAttributeNS(null, "onclick",'bindDrag(evt)');
+     }
+
+
+}
+
+// function for testing
+
+function getInternetExplorerVersion()
+{
+  var rv = -1;
+  if (navigator.appName == 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  else if (navigator.appName == 'Netscape')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  return rv;
+}
+
+
+       
+   ]]>
+
+</script>
+
+<defs>
+<link href="../css/fonts.css" type="text/css" rel="stylesheet"  xmlns="http://www.w3.org/1999/xhtml"/>
+</defs>   
+   
+<g transform="translate(507 680)" id="transformElement" class="translate(507 680)">
+
+<text  onmouseup="endMove()"   align="center" id="fontSel" class="changeMe" style="text-anchor: middle; font-family:Arial;funciri:move;"  font-size="50" draggable="true">
+<tspan x="0" dy="1.2em" y="0" ></tspan>
+</text>
+
+</g>
+
+</svg>
